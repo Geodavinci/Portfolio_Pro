@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Geonel - Mes Designs</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:200,300,400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Site Main Style sheet css -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <style>
+        /* Style spécifique pour la galerie designs */
+        .designs-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 30px 0;
+        }
+        
+        .design-item {
+            position: relative;
+            overflow: hidden;
+            border: 5px solid #0e0e0e;
+        }
+        
+        .design-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .design-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .design-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .design-item:hover .design-info {
+            transform: translateY(0);
+        }
+        
+        .design-info h3 {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .design-info p {
+            color: #eaeaea;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        
+        .design-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ea1538;
+            color: white;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div id="preloader-wapper">
+        <div class="loader-middle"></div>
+    </div>
+    <!-- Prealoader End -->
+
+    <!-- Page Wrapper Section Start -->
+    <div class="maslin-page-wrapper">
+
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll" href="index.html">Geo_Dev</a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"> <a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"> <a class="nav-link active" href="designs.html">Mes Designs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <!-- Designs Section Start -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="section-title">
+                            <h2>Mes Créations Design</h2>
+                            <p>Explorez ma collection de designs UI/UX, logos et interfaces</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="designs-gallery">
+                    <!-- Design Item 1 -->
+                    <div class="design-item">
+                        <span class="design-category">UI/UX</span>
+                        <img src="assets/img/designs/design1.jpg" alt="Design 1">
+                        <div class="design-info">
+                            <h3>Application Mobile</h3>
+                            <p>Design moderne avec palette rouge/noir</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Item 2 -->
+                    <div class="design-item">
+                        <span class="design-category">Logo</span>
+                        <img src="assets/img/designs/design2.jpg" alt="Design 2">
+                        <div class="design-info">
+                            <h3>Logo Entreprise</h3>
+                            <p>Identité visuelle minimaliste</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Item 3 -->
+                    <div class="design-item">
+                        <span class="design-category">Web</span>
+                        <img src="assets/img/designs/design3.jpg" alt="Design 3">
+                        <div class="design-info">
+                            <h3>Site Portfolio</h3>
+                            <p>Design épuré avec animations</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Item 4 -->
+                    <div class="design-item">
+                        <span class="design-category">UI/UX</span>
+                        <img src="assets/img/designs/design4.jpg" alt="Design 4">
+                        <div class="design-info">
+                            <h3>Dashboard Admin</h3>
+                            <p>Interface fonctionnelle et esthétique</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Item 5 -->
+                    <div class="design-item">
+                        <span class="design-category">Print</span>
+                        <img src="assets/img/designs/design5.jpg" alt="Design 5">
+                        <div class="design-info">
+                            <h3>Affiche Publicitaire</h3>
+                            <p>Design percutant et impactant</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Item 6 -->
+                    <div class="design-item">
+                        <span class="design-category">Web</span>
+                        <img src="assets/img/designs/design6.jpg" alt="Design 6">
+                        <div class="design-info">
+                            <h3>Landing Page</h3>
+                            <p>Optimisée pour la conversion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Designs Section End -->
+
+        <div class="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+    </div>
+    <!-- Page Wrapper Section End -->
+    
+    <!-- Footer Section Start -->
+    <footer class="footer-area">
+        <div class="copyright-area text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Copyright &copy; 2025 - Tous droits réservés</p>
+                        <p>Designed by <a href="https://github.com/Geodavinci">Géodavinci</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top back-to-top-pulse"><i class="fa fa-caret-up"></i></a>
+
+    <!--Jquery js-->
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <!--Site Main js-->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
