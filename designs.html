@@ -3,16 +3,50 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Geonel - Mes Designs</title>
+    <title>Geonel - Catalogue de Designs</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:200,300,400,500,600,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Site Main Style sheet css -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/responsive.css" rel="stylesheet">
     <style>
-        /* Style spécifique pour la galerie designs */
+        /* Styles généraux */
+        body {
+            background: #000000;
+            color: #eaeaea;
+        }
+        
+        /* Filtres */
+        .design-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background: #0e0e0e;
+            color: #ffffff;
+            border: 2px solid #ea1538;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #ea1538;
+            color: #ffffff;
+        }
+        
+        /* Galerie */
         .designs-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -24,11 +58,19 @@
             position: relative;
             overflow: hidden;
             border: 5px solid #0e0e0e;
+            transition: all 0.5s ease;
+        }
+        
+        .design-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(234, 21, 56, 0.3);
         }
         
         .design-item img {
             width: 100%;
-            height: auto;
+            height: 250px;
+            object-fit: cover;
+            display: block;
             transition: transform 0.5s ease;
         }
         
@@ -37,41 +79,193 @@
         }
         
         .design-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .design-item:hover .design-info {
-            transform: translateY(0);
+            padding: 20px;
+            background: #0e0e0e;
         }
         
         .design-info h3 {
             color: #ffffff;
             font-size: 18px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .design-info p {
             color: #eaeaea;
             font-size: 14px;
-            margin-bottom: 0;
+            margin-bottom: 15px;
         }
         
         .design-category {
-            position: absolute;
-            top: 15px;
-            right: 15px;
+            display: inline-block;
             background: #ea1538;
             color: white;
             padding: 5px 15px;
             font-size: 12px;
             font-weight: 600;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+        
+        /* Boutons WhatsApp */
+        .whatsapp-btn {
+            display: inline-block;
+            background: #ea1538;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #ea1538;
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Bouton flottant */
+        .discuss-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            background: #0e0e0e;
+            color: #ffffff;
+            border: 2px solid #ea1538;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+        }
+        
+        .discuss-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(234, 21, 56, 0.4);
+        }
+        
+        .discuss-btn i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Player de musique */
+        .music-player {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: rgba(14, 14, 14, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #ea1538;
+            width: 220px;
+            z-index: 1000;
+            transform: translateY(150%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+                        width 0.3s ease, 
+                        height 0.3s ease,
+                        border-radius 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+
+        .music-player.show {
+            transform: translateY(0);
+        }
+
+        .music-player h3 {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .music-btn {
+            background: #ea1538;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: #c0112d;
+        }
+
+        /* Animation de chargement */
+        .music-loading {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #ea1538;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Styles pour le player rond déplaçable */
+        .music-player.scrolling {
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: move;
+            border-radius: 50%;
+            bottom: auto;
+            right: auto;
+            left: 50px; /* Position initiale */
+            top: 50px;
+        }
+
+        .music-player.scrolling h3,
+        .music-player.scrolling .music-controls {
+            display: none;
+        }
+
+        .music-player.scrolling #toggle-music {
+            position: static;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(234, 21, 56, 0.2);
+            border: none;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .music-player.scrolling #toggle-music:hover {
+            background: rgba(234, 21, 56, 0.4);
+        }
+        
+        .music-player.scrolling #toggle-music i {
+            margin: 0;
         }
     </style>
 </head>
@@ -107,75 +301,129 @@
         <!-- Navbar End -->
 
         <!-- Designs Section Start -->
-        <section class="section-padding">
+        <section class="section-padding" style="padding-top: 100px;">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="section-title">
-                            <h2>Mes Créations Design</h2>
-                            <p>Explorez ma collection de designs UI/UX, logos et interfaces</p>
+                            <h2>Mon Catalogue de Designs</h2>
+                            <p>Découvrez mes créations et trouvez l'inspiration pour votre projet</p>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Filtres -->
+                <div class="design-filters">
+                    <button class="filter-btn active" data-filter="all">Tous</button>
+                    <button class="filter-btn" data-filter="portfolio">Portfolio</button>
+                    <button class="filter-btn" data-filter="logo">Logo</button>
+                    <button class="filter-btn" data-filter="site">Site Web</button>
+                    <button class="filter-btn" data-filter="app">Application</button>
+                </div>
+                
+                <!-- Galerie -->
                 <div class="designs-gallery">
-                    <!-- Design Item 1 -->
-                    <div class="design-item">
-                        <span class="design-category">UI/UX</span>
-                        <img src="assets/img/designs/design1.jpg" alt="Design 1">
+                    <!-- Item 1 -->
+                    <div class="design-item" data-category="portfolio">
+                        <img src="assets/img/designs/portfolio2.png" alt="Portfolio Créatif">
                         <div class="design-info">
-                            <h3>Application Mobile</h3>
-                            <p>Design moderne avec palette rouge/noir</p>
+                            <span class="design-category">Portfolio</span>
+                            <h3>Portfolio Minimaliste</h3>
+                            <p>Design épuré pour mettre en valeur votre travail</p>
+                            <a href="https://wa.me/22897010368?text=Je%20suis%20intéressé%20par%20votre%20design%20'Portfolio%20Minimaliste'" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Choisir ce design
+                            </a>
                         </div>
                     </div>
                     
-                    <!-- Design Item 2 -->
-                    <div class="design-item">
-                        <span class="design-category">Logo</span>
-                        <img src="assets/img/designs/design2.jpg" alt="Design 2">
+                    <!-- Item 2 -->
+                    <div class="design-item" data-category="logo">
+                        <img src="assets/img/designs/wow_logo.png" alt="Logo Entreprise">
                         <div class="design-info">
-                            <h3>Logo Entreprise</h3>
-                            <p>Identité visuelle minimaliste</p>
+                            <span class="design-category">Logo</span>
+                            <h3>Logo Moderne</h3>
+                            <p>Identité visuelle contemporaine pour votre marque</p>
+                            <a href="https://wa.me/22897010368?text=Je%20suis%20intéressé%20par%20votre%20design%20'Logo%20Moderne'" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Choisir ce design
+                            </a>
                         </div>
                     </div>
                     
-                    <!-- Design Item 3 -->
-                    <div class="design-item">
-                        <span class="design-category">Web</span>
-                        <img src="assets/img/designs/design3.jpg" alt="Design 3">
+                    <!-- Item 3 -->
+                    <div class="design-item" data-category="site">
+                        <img src="assets/img/designs/template.png" alt="Site Web Corporate">
                         <div class="design-info">
-                            <h3>Site Portfolio</h3>
-                            <p>Design épuré avec animations</p>
+                            <span class="design-category">Site Web</span>
+                            <h3>Site Corporate</h3>
+                            <p>Design professionnel pour votre entreprise</p>
+                            <a href="https://wa.me/22897010368?text=Je%20suis%20intéressé%20par%20votre%20design%20'Site%20Corporate'" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Choisir ce design
+                            </a>
                         </div>
                     </div>
                     
-                    <!-- Design Item 4 -->
-                    <div class="design-item">
-                        <span class="design-category">UI/UX</span>
-                        <img src="assets/img/designs/design4.jpg" alt="Design 4">
+                    <!-- Item 4 -->
+                    <div class="design-item" data-category="app">
+                        <img src="assets/img/designs/app_geonel.png" alt="Application Mobile">
                         <div class="design-info">
+                            <span class="design-category">Application</span>
+                            <h3>App Mobile</h3>
+                            <p>Interface utilisateur fluide et intuitive</p>
+                            <a href="https://wa.me/22897010368?text=Je%20suis%20intéressé%20par%20votre%20design%20'App%20Mobile'" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Choisir ce design
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 5 -->
+                    <div class="design-item" data-category="portfolio">
+                        <img src="assets/img/designs/portfolio.png" alt="Portfolio Artistique">
+                        <div class="design-info">
+                            <span class="design-category">Portfolio</span>
+                            <h3>Portfolio Artistique</h3>
+                            <p>Mettez en avant votre créativité</p>
+                            <a href="https://wa.me/22897010368?text=Je%20suis%20intéressé%20par%20votre%20design%20'Portfolio%20Artistique'" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Choisir ce design
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 6 -->
+                    <div class="design-item" data-category="logo">
+                        <img src="assets/img/designs/logo_paaname.png" alt="Logo Typographique">
+                        <div class="design-info">
+                            <span class="design-category">Logo</span>
+                            <h3>Logo Typographique</h3>
+                            <p>Identité basée sur la typographie</p>
+                            <a href="https://wa.me/22897010368?text=Je%20suis%20intéressé%20par%20votre%20design%20'Logo%20Typographique'" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Choisir ce design
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 7 -->
+                    <div class="design-item" data-category="site">
+                        <img src="assets/img/designs/e-commerce.png" alt="Site E-commerce">
+                        <div class="design-info">
+                            <span class="design-category">Site Web</span>
+                            <h3>Boutique en ligne</h3>
+                            <p>Design optimisé pour les conversions</p>
+                            <a href="https://wa.me/22897010368?text=Je%20suis%20intéressé%20par%20votre%20design%20'Boutique%20en%20ligne'" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Choisir ce design
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 8 -->
+                    <div class="design-item" data-category="app">
+                        <img src="assets/img/designs/mobile.png" alt="Application Dashboard">
+                        <div class="design-info">
+                            <span class="design-category">Application</span>
                             <h3>Dashboard Admin</h3>
-                            <p>Interface fonctionnelle et esthétique</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Design Item 5 -->
-                    <div class="design-item">
-                        <span class="design-category">Print</span>
-                        <img src="assets/img/designs/design5.jpg" alt="Design 5">
-                        <div class="design-info">
-                            <h3>Affiche Publicitaire</h3>
-                            <p>Design percutant et impactant</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Design Item 6 -->
-                    <div class="design-item">
-                        <span class="design-category">Web</span>
-                        <img src="assets/img/designs/design6.jpg" alt="Design 6">
-                        <div class="design-info">
-                            <h3>Landing Page</h3>
-                            <p>Optimisée pour la conversion</p>
+                            <p>Interface de gestion complète</p>
+                            <a href="https://wa.me/22897010368?text=Je%20suis%20intéressé%20par%20votre%20design%20'Dashboard%20Admin'" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Choisir ce design
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -193,6 +441,22 @@
 
     </div>
     <!-- Page Wrapper Section End -->
+    
+    <!-- Player de musique magique simplifié -->
+    <div class="music-player">
+        <h3><i class="fas fa-music"></i>Soyez relax...</h3>
+        <audio id="scroll-audio" loop></audio>
+        <div class="music-controls">
+            <button id="toggle-music" class="music-btn"><i class="fas fa-play"></i></button>
+            <button id="mute-music" class="music-btn"><i class="fas fa-volume-up"></i></button>
+            <div id="music-loading" class="music-loading"></div>
+        </div>
+    </div>
+    
+    <!-- Bouton flottant WhatsApp -->
+    <a href="https://wa.me/22897010368?text=Parlons%20business%20!" class="discuss-btn">
+        <i class="fab fa-whatsapp"></i> Discuter
+    </a>
     
     <!-- Footer Section Start -->
     <footer class="footer-area">
@@ -216,6 +480,187 @@
     <script src="assets/js/jquery-3.5.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/plugins.js"></script>
+    
+    <!-- Script pour les filtres -->
+    <script>
+        $(document).ready(function(){
+            // Filtrage des designs
+            $('.filter-btn').click(function(){
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                var filter = $(this).data('filter');
+                
+                if(filter == 'all') {
+                    $('.design-item').show();
+                } else {
+                    $('.design-item').hide();
+                    $('.design-item[data-category="'+filter+'"]').show();
+                }
+            });
+            
+            // Animation au survol
+            $('.design-item').hover(
+                function() {
+                    $(this).find('img').css('transform', 'scale(1.05)');
+                },
+                function() {
+                    $(this).find('img').css('transform', 'scale(1)');
+                }
+            );
+        });
+    </script>
+    
+    <!-- Script pour le player musical avec transformation en rond déplaçable -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('scroll-audio');
+            const musicPlayer = document.querySelector('.music-player');
+            const toggleBtn = document.getElementById('toggle-music');
+            const muteBtn = document.getElementById('mute-music');
+            const loadingIndicator = document.getElementById('music-loading');
+            
+            let isPlaying = false;
+            let isMuted = false;
+            let isDragging = false;
+            let offsetX, offsetY;
+            let lastScroll = 0;
+            let scrollTimeout;
+            let userInteracted = false;
+            
+            // Configuration de la musique
+            audio.src = "assets/music/relax.mp3";
+            audio.loop = true;
+            audio.volume = 0.3;
+            
+            // Afficher le player après le chargement
+            setTimeout(function() {
+                musicPlayer.classList.add('show');
+            }, 2000);
+            
+            // Contrôle play/pause
+            toggleBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    audio.pause();
+                    this.innerHTML = '<i class="fas fa-play"></i>';
+                } else {
+                    loadingIndicator.style.display = 'block';
+                    audio.play()
+                        .then(() => {
+                            loadingIndicator.style.display = 'none';
+                            this.innerHTML = '<i class="fas fa-pause"></i>';
+                            userInteracted = true;
+                        })
+                        .catch(error => {
+                            console.error("Erreur de lecture audio:", error);
+                            loadingIndicator.style.display = 'none';
+                        });
+                }
+                isPlaying = !isPlaying;
+            });
+            
+            // Contrôle mute
+            muteBtn.addEventListener('click', function() {
+                if (isMuted) {
+                    audio.muted = false;
+                    this.innerHTML = '<i class="fas fa-volume-up"></i>';
+                } else {
+                    audio.muted = true;
+                    this.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                }
+                isMuted = !isMuted;
+            });
+            
+            // Détection d'interaction utilisateur
+            document.addEventListener('click', function() {
+                userInteracted = true;
+            }, { once: true });
+            
+            // Transformation en rond déplaçable pendant le scroll
+            window.addEventListener('scroll', function() {
+                if (!userInteracted) return;
+                
+                const currentScroll = window.scrollY;
+                
+                // Si le scroll est significatif
+                if (Math.abs(currentScroll - lastScroll) > 5) {
+                    // Transformer en rond si ce n'est pas déjà fait
+                    if (!musicPlayer.classList.contains('scrolling')) {
+                        musicPlayer.classList.add('scrolling');
+                        
+                        // Position aléatoire initiale
+                        const randomX = Math.max(20, Math.min(window.innerWidth - 70, Math.random() * window.innerWidth));
+                        const randomY = Math.max(20, Math.min(window.innerHeight - 70, Math.random() * window.innerHeight));
+                        
+                        musicPlayer.style.left = randomX + 'px';
+                        musicPlayer.style.top = randomY + 'px';
+                        musicPlayer.style.right = 'auto';
+                        musicPlayer.style.bottom = 'auto';
+                    }
+                    
+                    // Augmenter le volume pendant le scroll
+                    if (audio.volume < 0.7) {
+                        audio.volume = Math.min(0.7, audio.volume + 0.02);
+                    }
+                }
+                
+                lastScroll = currentScroll;
+                
+                // Réinitialiser le timeout à chaque mouvement de scroll
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    // Après 5 secondes sans scroll, revenir à l'état normal
+                    musicPlayer.classList.remove('scrolling');
+                    musicPlayer.style.right = '30px';
+                    musicPlayer.style.bottom = '100px';
+                    musicPlayer.style.left = 'auto';
+                    musicPlayer.style.top = 'auto';
+                    
+                    // Diminuer progressivement le volume
+                    const fadeOut = setInterval(() => {
+                        if (audio.volume > 0.3) {
+                            audio.volume = Math.max(0.3, audio.volume - 0.01);
+                        } else {
+                            clearInterval(fadeOut);
+                        }
+                    }, 100);
+                }, 5000); // 5 secondes après l'arrêt du scroll
+            });
+            
+            // Drag and drop pour le player rond
+            musicPlayer.addEventListener('mousedown', function(e) {
+                if (musicPlayer.classList.contains('scrolling')) {
+                    isDragging = true;
+                    offsetX = e.clientX - musicPlayer.getBoundingClientRect().left;
+                    offsetY = e.clientY - musicPlayer.getBoundingClientRect().top;
+                    musicPlayer.style.cursor = 'grabbing';
+                    e.preventDefault();
+                }
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) {
+                    musicPlayer.style.left = (e.clientX - offsetX) + 'px';
+                    musicPlayer.style.top = (e.clientY - offsetY) + 'px';
+                }
+            });
+            
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+                if (musicPlayer.classList.contains('scrolling')) {
+                    musicPlayer.style.cursor = 'move';
+                }
+            });
+            
+            // Empêcher le drag de sélectionner du texte
+            document.addEventListener('selectstart', function(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+    
     <!--Site Main js-->
     <script src="assets/js/main.js"></script>
 

@@ -14,20 +14,74 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/responsive.css" rel="stylesheet">
     <style>
+        /* Style pour la section "About" */
+     .about-content {
+    line-height: 1;
+}
+
+.about-intro {
+    margin-bottom: 30px;
+}
+
+.about-values {
+    margin-bottom: 30px;
+}
+
+.values-list {
+    padding-left: 10px;
+}
+
+.values-list li {
+    margin-bottom: 10px;
+    position: relative;
+    list-style-type: none;
+}
+
+.contact-info {
+    margin-bottom: 25px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.fa {
+    margin-right: 10px;
+}
         /* Style pour les logos technos */
         .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .tech-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+.section-title h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #ea1538;
+}
         
         .tech-icon {
             font-size: 3rem;
@@ -87,6 +141,41 @@
             background: transparent;
             border: 2px solid #ea1538;
         }
+        /* Pour une meilleure responsivité */
+@media (max-width: 992px) {
+    .about-image {
+        max-height: 400px !important;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-image {
+        max-height: 350px !important;
+    }
+}
+.portfolio-offer {
+    padding: 70px 0;
+    color: white;
+    text-align: center;
+}
+
+.design-btn {
+    display: inline-block;
+    background: #ea1538;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 35px;
+    font-weight: 700;
+    margin-top: 20px;
+    border: 2px solid #ea1538;
+    transition: all 0.5s ease;
+}
+
+.design-btn:hover {
+    background: transparent;
+    color: white;
+}
     </style>
 </head>
 
@@ -131,7 +220,7 @@
                     <div class="col-lg-10 offset-lg-1 col-md-8 offset-md-2">
                         <div class="text-center home-content z-index position-relative">
                             <h1>Geonel AMOUZOU</h1>
-                            <p>Je suis designer web et développeur front-end avec une passion pour l'apprentissage,</p>
+                            <p>Je suis designer web et développeur fulldtack avec une passion pour l'apprentissage,</p>
                             <p>J'aide les entreprises et les particuliers en développant des sites web. Je crée des sites web pour assurer votre succès à long terme. Je mets mon professionnalisme au service de tout client et de toute entreprise en <span class="element" data-text1="Designer web." data-text2="Développeur FullStack." data-text3="UI/UX designer." data-loop="true" data-backdelay="1500"></span></p>
                             <a href="#contact" class="button js-scroll">Besoin Immédiat</a>
                         </div>
@@ -139,7 +228,7 @@
                     <div class="social">
                         <a class="text">Liens sociaux</a>
                         <div class="line"></div>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.facebook.com/top.geo.2025"><i class="fa fa-facebook"></i></a>
                         <a href="https://www.linkedin.com/in/geonel-dev/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                         <a href="https://wa.me/+22897010368"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
@@ -162,23 +251,58 @@
                 </div>
                 <div class="row align-items-center">
                     <div class="col-lg-5 col-md-12">
-                        <div class="about-image">
-                            <img src="assets/img/about.jpg" alt="img">
+                        <div class="about-image" style="max-height: 500px; overflow: hidden;">
+                            <img src="assets/img/about.jpg" alt="Geonel AMOUZOU - Expert Développement Front-end" 
+                                 style="width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                        border: 5px solid #0e0e0e;
+                                        padding: 5px;">
                         </div>
+                    
+                        <!-- Légende sous l'image -->
+                        <p style="text-align: center;
+                                  margin-top: 15px;
+                                  color: #eaeaea;
+                                  font-size: 13px;
+                                  font-style: italic;
+                                  padding: 0 10px;">
+                            "Un expert UI/UX &amp; Développement Web/Mobile qui allie créativité et technique pour des solutions digitales performantes."
+                        </p>
                     </div>
                     <div class="col-lg-7 col-md-12">
+                        <!-- [Le reste de votre contenu texte reste inchangé] -->
                         <div class="about-content">
-                            <h3>Bienvenu(e) sur <span class="color-text">Mon Profil</span></h3>
-                            <h3>- C'est un plaisir de me présenter</h3>
-                            <p>Hello je suis <strong class="color-text">Geonel AMOUZOU</strong>. Je suis développeur front-end et designer UI/UX avec plus de 3 ans d'expérience. Fort de plus de 3 ans d'expérience en conception web et développement front-end, je possède une compréhension approfondie des technologies et des processus nécessaires pour mener à bien un projet web de A à Z.</p>
-                            <br>
-                            <h3>Quelles sont mes valeurs ?</h3>
-                            <p>Lors du développement d'un projet web, je me concentre sur la compréhension des objectifs commerciaux et la livraison d'un produit final qui répondra réellement aux besoins du client.</p>
-                            <br>
-                            <p><b>Téléphone:</b> +228 93547666
-                                <br><b>E-mail:</b> geonelamouzou@gmail.com
-                                <br><b>Pseudo:</b> Geo_Dev</p>
-                            <a href="assets/cv/Cv_Geonel_Dev.pdf" download="Cv_Geonel_Dev.pdf" class="button js-scroll">Télécharger mon CV</a>
+                            <h3>Bienvenue sur <span class="color-text">mon univers numérique</span></h3>
+                            
+                            <div class="about-intro">
+                                <p>Bonjour, je suis <strong class="color-text">Geonel AMOUZOU</strong>, <strong>développeur Web/Mobile</strong> et <strong>designer UI/UX</strong> passionné avec plus de 3 ans d'expérience.</p>
+                                
+                                <p>Spécialiste des interfaces utilisateur performantes, je maîtrise l'art de concilier <strong>esthétique</strong> et <strong>fonctionnalité</strong> pour créer des expériences digitales mémorables.</p>
+                            </div>
+                        
+                            <div class="about-values">
+                                <h3>Mon approche &amp; valeurs</h3>
+                                <ul class="values-list">
+                                    <li><span class="color-text">▶</span> <strong>Écoute active :</strong> Je prends le temps de comprendre vos objectifs business avant de coder</li>
+                                    <li><span class="color-text">▶</span> <strong>Solutions sur mesure :</strong> Chaque projet est unique et mérite une approche personnalisée</li>
+                                    <li><span class="color-text">▶</span> <strong>Qualité irréprochable :</strong> Code propre, design cohérent et expérience utilisateur optimale</li>
+                                    <li><span class="color-text">▶</span> <strong>Livraison dans les temps :</strong> Respect des délais sans compromis sur la qualité</li>
+                                </ul>
+                            </div>
+                        
+                            <div class="about-contact">
+                                <h3>Contactez-moi</h3>
+                                <div class="contact-info">
+                                    <p><i class="fa fa-phone color-text"></i> <strong>+228 93 54 76 66</strong></p>
+                                    <p><i class="fa fa-envelope color-text"></i> <strong>geonelamouzou@gmail.com</strong></p>
+                                    <p><i class="fa fa-user color-text"></i> <strong>Geo_Dev</strong> (pseudo professionnel)</p>
+                                </div>
+                                
+                                <a href="assets/cv/Cv_Geonel_Dev.pdf" download="Cv_Geonel_Dev.pdf" class="button">
+                                    <i class="fa fa-download"></i> Télécharger mon CV
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -187,25 +311,45 @@
         <!-- About Section End -->
         
         <!-- Portfolio Offer Section -->
-        <section class="portfolio-offer">
-            <div class="container">
-                <h2>Portfolios Professionnels sur Mesure</h2>
-                <p>Je crée des portfolios en ligne haut de gamme qui mettent en valeur votre travail et votre expertise. Un portfolio professionnel peut booster votre carrière et attirer plus de clients.</p>
-                <a href="designs.html" class="design-btn js-scroll">Voir mes designs</a>
+        <section class="portfolio-offer" style="position: relative; z-index: 1; background-color: transparent;">
+            <div class="container" style="position: relative; z-index: 2;">
+                <h2>Boutique</h2>
+                <p style="position: relative; z-index: 2;">Je crée des designs en ligne haut de gamme qui mettent en valeur votre travail et votre expertise. Un portfolio professionnel peut booster votre carrière et attirer plus de clients.</p>
+                <a href="designs.html" class="design-btn js-scroll" style="position: relative; z-index: 2;">Voir designs</a>
+            </div>
+            <!-- Fond semi-transparent pour améliorer la lisibilité -->
+            <div style="position: absolute; 
+                        top: 0; 
+                        left: 0; 
+                        width: 100%; 
+                        height: 100%; 
+                        background: rgba(0, 0, 0, 0.6); 
+                        z-index: 1;">
             </div>
         </section>
         
         <!-- Skill Section Start -->
-        <section class="skill-area section-padding">
-            <div class="container">
+        <section class="skill-area section-padding" style="position: relative; background-color: transparent; z-index: 1;">
+            <!-- Fond semi-transparent pour lisibilité -->
+            <div style="position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.7);
+                        z-index: -1;">
+            </div>
+            
+            <div class="container" style="position: relative; z-index: 2;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="section-title">
-                            <h2>Technologies Maîtrisées</h2>
+                            <h2 style="color: #ffffff;">Technologies Maîtrisées</h2>
                         </div>
                     </div>
                 </div>
-                <div class="tech-stack">
+                
+                <div class="tech-stack" style="position: relative; z-index: 2;">
                     <div class="tech-item">
                         <i class="devicon-html5-plain-wordmark tech-icon"></i>
                         <span class="tech-name">HTML5</span>
@@ -243,8 +387,32 @@
                         <span class="tech-name">Laravel</span>
                     </div>
                     <div class="tech-item">
-                        <i class="devicon-django-plain tech-icon"></i>
-                        <span class="tech-name">Django</span>
+                        <i class="devicon-react-plain tech-icon"></i>
+                        <span class="tech-name">React</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="devicon-github-plain tech-icon"></i>
+                        <span class="tech-name">Github</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="devicon-mongodb-plain tech-icon"></i>
+                        <span class="tech-name">Mongo</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="devicon-nodejs-plain tech-icon"></i>
+                        <span class="tech-name">NodeJs</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="devicon-python-plain tech-icon"></i>
+                        <span class="tech-name">Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="devicon-vuejs-plain tech-icon"></i>
+                        <span class="tech-name">VueJs</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="devicon-docker-plain tech-icon"></i>
+                        <span class="tech-name">Docker</span>
                     </div>
                 </div>
             </div>
